@@ -84,6 +84,9 @@ namespace Eppy
 			if (object.ReferenceEquals(a, null)) {
 				return object.ReferenceEquals(b, null);
 			}
+			if (object.ReferenceEquals (b, null)) {
+								return object.ReferenceEquals (a, null);
+						}
 			if (a.item1 == null && b.item1 != null) return false;
 			if (a.item2 == null && b.item2 != null) return false;
 			return

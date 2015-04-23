@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text;
 using System.Collections.Generic;
-//using NUnit.Framework;
+using Eppy;
 
 namespace vrim
 {
@@ -51,12 +51,12 @@ namespace vrim
 			if (pos > textLength)
 				return false;
 
-			TupleStruct pp = PieceFromPos (pos);
+			Tuple<Piece, int> pp = PieceFromPos (pos);
 			if (pp == null)
 				return false;
 				
-			Piece piece = pp.p;
-			int piecePos = pp.pos;
+			Piece piece = pp.Item1;
+			int piecePos = pp.Item2;
 			int insOffset = pos - piecePos;
 
 			addBuf.Add (toInsert);
@@ -164,8 +164,8 @@ namespace vrim
 			Piece piece = pp.Item1;
 			int piecePos = pp.Item2;
 
-			if (piece == null)
-				return false;
+			//if (piece == null)
+				//return false;
 			int remOffset = pos - piecePos;
 			int removeLen = length;
 
@@ -221,26 +221,21 @@ namespace vrim
 			}
 		}
 
-		private TupleStruct PieceFromPos(int pos)
+		private Tuple<Piece, int> PieceFromPos(int pos)
 		{
 			Piece currPiece;
 			int currPos = 0;
 
 			for (currPiece = head.next; currPiece.next != null; currPiece = currPiece.next) {
 				if (pos >= currPos && pos < currPos + currPiece.length) {
-					TupleStruct ret = new TupleStruct(); 
-					ret.p = currPiece;
-					ret.pos = currPos;
+					Tuple<Piece, int> ret = new Tuple<Piece, int>(currPiece, currPos); 
 					return ret;
 				}
 				currPos += currPiece.length;
 			}
 			// insert at tail
 			if (currPiece != null && pos == currPos) {
-				TupleStruct ret = new TupleStruct(); 
-				ret.p = currPiece;
-				ret.pos = currPos;
-				return ret;
+				return new Tuple<Piece, int>(currPiece, currPos);
 			}
 
 			return null;
@@ -328,11 +323,6 @@ namespace vrim
 				prev = null;
 			}
 
-		}
-
-		private struct TupleStruct {
-			public Piece p;
-			public int pos;
 		}
 	}
 /*
