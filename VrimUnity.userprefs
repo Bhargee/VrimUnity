@@ -1,9 +1,11 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Buffer.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\PieceChain.cs">
     <Files>
-      <File FileName="Assets\IntegrationTest.cs" Line="3" Column="8" />
-      <File FileName="Assets\Buffer.cs" Line="25" Column="28" />
+      <File FileName="Assets\PieceChain.cs" Line="58" Column="23" />
+      <File FileName="Assets\Buffer.cs" Line="17" Column="26" />
+      <File FileName="Assets\InputTestScript.cs" Line="19" Column="32" />
+      <File FileName="Assets\Tuple2.cs" Line="74" Column="18" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
