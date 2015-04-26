@@ -5,13 +5,26 @@ using vrim;
 
 public class InputTestScript : MonoBehaviour {
 	Buffer b;
-	Canvas c;
+	GameObject c;
+	GameObject c2;
 	Text t; 
+	float Sphere_Size = 8.0F;
+
+	InputField i;
 	// Use this for initialization
 	void Start () {
 		b = new Buffer ();
 		t = (GameObject.Find ("Text")).GetComponent<Text>();
 		StartCoroutine("ProcInput");
+		c = GameObject.Find ("Canvas");
+		Vector3 newPos = new Vector3(Sphere_Size * Mathf.Cos (0) * Mathf.Sin(0), Sphere_Size * Mathf.Sin (0) * Mathf.Sin (0), Sphere_Size * Mathf.Cos (0));
+		c.transform.position = newPos;
+		c2 = GameObject.Find ("Canvas");
+		Vector3 newPos2 = new Vector3(Sphere_Size * Mathf.Cos (Mathf.Atan(0/20)) * Mathf.Sin(Mathf.Acos(180/Sphere_Size)), Sphere_Size * Mathf.Sin (Mathf.Atan(0/20)) * Mathf.Sin (Mathf.Acos(180/Sphere_Size)), Sphere_Size * Mathf.Cos (Mathf.Acos(180/Sphere_Size)));
+		c2.transform.position = newPos2;
+		i = (GameObject.Find ("InputField")).GetComponent<InputField>();
+		i.Select ();
+		i.ActivateInputField();
 	}
 	
 	// Update is called once per frame
@@ -21,54 +34,34 @@ public class InputTestScript : MonoBehaviour {
 
 	IEnumerator ProcInput() 
 	{
-		while (true) {
-			/* Editor Functions */
-			// TODO
-			string toInput = null;
-			bool uppercase = false;
-			if((Input.GetKey (KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift)))
-				uppercase = true;
-			if (Input.GetKey(KeyCode.A)) toInput = "a";
-			else if (Input.GetKey(KeyCode.B)) toInput = "b";
-			else if (Input.GetKey(KeyCode.C)) toInput = "c";
-			else if (Input.GetKey(KeyCode.C)) toInput = "c";
-			else if (Input.GetKey(KeyCode.D)) toInput = "d";
-			else if (Input.GetKey(KeyCode.E)) toInput = "e";
-			else if (Input.GetKey(KeyCode.F)) toInput = "f";
-			else if (Input.GetKey(KeyCode.G)) toInput = "g";
-			else if (Input.GetKey(KeyCode.H)) toInput = "h";
-			else if (Input.GetKey(KeyCode.I)) toInput = "i";
-			else if (Input.GetKey(KeyCode.J)) toInput = "j";
-			else if (Input.GetKey(KeyCode.K)) toInput = "k";
-			else if (Input.GetKey(KeyCode.L)) toInput = "l";
-			else if (Input.GetKey(KeyCode.M)) toInput = "m";
-			else if (Input.GetKey(KeyCode.N)) toInput = "n";
-			else if (Input.GetKey(KeyCode.O)) toInput = "o";
-			else if (Input.GetKey(KeyCode.P)) toInput = "p";
-			else if (Input.GetKey(KeyCode.Q)) toInput = "q";
-			else if (Input.GetKey(KeyCode.R)) toInput = "r";
-			else if (Input.GetKey(KeyCode.S)) toInput = "s";
-			else if (Input.GetKey(KeyCode.T)) toInput = "t";
-			else if (Input.GetKey(KeyCode.U)) toInput = "u";
-			else if (Input.GetKey(KeyCode.V)) toInput = "v";
-			else if (Input.GetKey(KeyCode.W)) toInput = "w";
-			else if (Input.GetKey(KeyCode.X)) toInput = "x";
-			else if (Input.GetKey(KeyCode.Y)) toInput = "y";
-			else if (Input.GetKey(KeyCode.Z)) toInput = "z";
-
-			if(uppercase && toInput != null)
-				toInput = toInput.ToUpper();
-			if (Input.GetKey(KeyCode.Space))
-				toInput = " ";
-			if (Input.GetKey(KeyCode.Return))
-				toInput = "\n";
-			   
-			
-			if (toInput != null) {
-				b.Insert(toInput);
-				t.text = b.GetContents();
-			}
-			yield return new WaitForSeconds (.08f);
+				while (true) {
+						bool command = false;
+						if (Input.GetKey (KeyCode.LeftControl) || Input.GetKey (KeyCode.RightControl)) {
+								command = true;
+						}
+						if (command) {
+								//Should probably set min and max
+								//At least at 0
+								//But who am I to limmit the user?
+								if (Input.GetKey (KeyCode.Q)) {
+										Sphere_Size = Sphere_Size - .3F;
+										Vector3 newPos = new Vector3 (Sphere_Size * Mathf.Cos (0) * Mathf.Sin (0), Sphere_Size * Mathf.Sin (0) * Mathf.Sin (0), Sphere_Size * Mathf.Cos (0));
+										c.transform.position = newPos;
+								} else if (Input.GetKey (KeyCode.E)) {
+										Sphere_Size = Sphere_Size + .3F;
+										Vector3 newPos = new Vector3 (Sphere_Size * Mathf.Cos (0) * Mathf.Sin (0), Sphere_Size * Mathf.Sin (0) * Mathf.Sin (0), Sphere_Size * Mathf.Cos (0));
+										c.transform.position = newPos;
+				} else if (Input.GetKey (KeyCode.L)) {//Overwrite onselect highlight
+					i = (GameObject.Find ("InputField")).GetComponent<InputField>();
+					i.Select ();
+					i.ActivateInputField();
+				}else if (Input.GetKey (KeyCode.K)) {//Overwrite onselect highlight
+					i = (GameObject.Find ("InputField2")).GetComponent<InputField>();
+					i.Select ();
+					i.ActivateInputField();
+				}
+						}
+						yield return new WaitForSeconds (.08f);
+				}
 		}
-	}
 }
