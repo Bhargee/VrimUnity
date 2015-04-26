@@ -19,6 +19,10 @@ public class InputTestScript : MonoBehaviour {
 		c = GameObject.Find ("Canvas");
 		Vector3 newPos = new Vector3(Sphere_Size * Mathf.Cos (0) * Mathf.Sin(0), Sphere_Size * Mathf.Sin (0) * Mathf.Sin (0), Sphere_Size * Mathf.Cos (0));
 		c.transform.position = newPos;
+		int x, y, z;
+		x = 100;
+		y = 200;
+		z = 300;
 		c2 = GameObject.Find ("Canvas");
 		Vector3 newPos2 = new Vector3(Sphere_Size * Mathf.Cos (Mathf.Atan(0/20)) * Mathf.Sin(Mathf.Acos(180/Sphere_Size)), Sphere_Size * Mathf.Sin (Mathf.Atan(0/20)) * Mathf.Sin (Mathf.Acos(180/Sphere_Size)), Sphere_Size * Mathf.Cos (Mathf.Acos(180/Sphere_Size)));
 		c2.transform.position = newPos2;
