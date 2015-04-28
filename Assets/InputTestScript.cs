@@ -15,7 +15,7 @@ public class InputTestScript : MonoBehaviour {
 	void Start () {
 		b = new Buffer ();
 		t = (GameObject.Find ("Text")).GetComponent<Text>();
-		StartCoroutine("ProcInput");
+		//StartCoroutine("ProcInput");
 		c = GameObject.Find ("Canvas");
 		Vector3 newPos = new Vector3(Sphere_Size * Mathf.Cos (0) * Mathf.Sin(0), Sphere_Size * Mathf.Sin (0) * Mathf.Sin (0), Sphere_Size * Mathf.Cos (0));
 		c.transform.position = newPos;
@@ -36,7 +36,7 @@ public class InputTestScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
+		StartCoroutine ("ProcInput");
 	}
 
 	IEnumerator ProcInput() 
