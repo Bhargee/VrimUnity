@@ -3,10 +3,9 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using System.Collections;
 
-public class LookInput : BaseInputModule {
+public class Pointer : BaseInputModule {
 	
 	public const int kLookId = -3;
-	public string submitButtonName = "Fire1";
 	public string controlAxisName = "Horizontal";
 	private PointerEventData lookData;
 	
@@ -37,7 +36,6 @@ public class LookInput : BaseInputModule {
 	}
 	
 	public override void Process() {
-		Debug.Log ("Processing");
 		// send update events if there is a selected object - this is important for InputField to receive keyboard events
 		SendUpdateEventToSelectedObject();
 		PointerEventData lookData = GetLookPointerEventData();

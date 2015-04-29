@@ -30,8 +30,8 @@ public class InputTestScript : MonoBehaviour {
 		c2.transform.position = newPos2;
 		c2.transform.Rotate (x, y, z);
 		i = (GameObject.Find ("InputField")).GetComponent<InputField>();
-		i.Select ();
-		i.ActivateInputField();
+		//i.Select ();
+		//i.ActivateInputField();
 	}
 	
 	// Update is called once per frame

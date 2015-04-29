@@ -62,7 +62,7 @@
  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.1/Editor/UnityEditor.UI.dll</HintPath>
  </Reference>
  <Reference Include="GapBuffer">
- <HintPath>C:/Users/fishben2/Documents/GitHub/VrimUnity/Assets/Plugins/Editor/GapBuffer.dll</HintPath>
+ <HintPath>C:/Users/manja2/Documents/GitHub/VrimUnity/Assets/Plugins/Editor/GapBuffer.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.Graphs">
  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEditor.Graphs.dll</HintPath>
