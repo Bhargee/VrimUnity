@@ -8,7 +8,7 @@ public class Pointer : BaseInputModule {
 	public const int kLookId = -3;
 	public string controlAxisName = "Horizontal";
 	private PointerEventData lookData;
-	
+
 	// use screen midpoint as locked pointer location, enabling look location to be the "mouse"
 	private PointerEventData GetLookPointerEventData() {
 		Vector2 lookPosition;
@@ -40,19 +40,13 @@ public class Pointer : BaseInputModule {
 		SendUpdateEventToSelectedObject();
 		PointerEventData lookData = GetLookPointerEventData();
 		// use built-in enter/exit highlight handler
-		HandlePointerExitAndEnter(lookData,lookData.pointerCurrentRaycast.gameObject);
-		if (Input.GetKeyDown(KeyCode.B)) {
-			eventSystem.SetSelectedGameObject(null);
-			if (lookData.pointerCurrentRaycast.gameObject != null) {
-				GameObject go = lookData.pointerCurrentRaycast.gameObject;
-				GameObject newPressed = ExecuteEvents.ExecuteHierarchy (go, lookData, ExecuteEvents.submitHandler);
-				if (newPressed == null) {
-					// submit handler not found, try select handler instead
-					newPressed = ExecuteEvents.ExecuteHierarchy (go, lookData, ExecuteEvents.selectHandler);
-				}
-				if (newPressed != null) {
-					eventSystem.SetSelectedGameObject(newPressed);
-				}
+
+		if (lookData.pointerCurrentRaycast.gameObject != null && eventSystem.currentSelectedGameObject != lookData.pointerCurrentRaycast.gameObject) {
+			GameObject go = lookData.pointerCurrentRaycast.gameObject;
+			GameObject newPressed = ExecuteEvents.ExecuteHierarchy (go, lookData, ExecuteEvents.selectHandler);
+			if (newPressed != null) {
+				eventSystem.SetSelectedGameObject(newPressed);
+				(newPressed.GetComponent<InputField>()).MoveTextEnd(false);
 			}
 		}
 		if (eventSystem.currentSelectedGameObject && controlAxisName != null && controlAxisName != "") {
