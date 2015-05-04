@@ -8,7 +8,8 @@ public class Pointer : BaseInputModule {
 	public const int kLookId = -3;
 	public string controlAxisName = "Horizontal";
 	private PointerEventData lookData;
-
+	private bool locked = false;
+	
 	// use screen midpoint as locked pointer location, enabling look location to be the "mouse"
 	private PointerEventData GetLookPointerEventData() {
 		Vector2 lookPosition;
@@ -34,19 +35,59 @@ public class Pointer : BaseInputModule {
 		ExecuteEvents.Execute (eventSystem.currentSelectedGameObject, data, ExecuteEvents.updateSelectedHandler);
 		return data.used;
 	}
+
+	public void LockOn()
+	{
+		GameObject lookedAt = lookData.pointerCurrentRaycast.gameObject;
+		GameObject currBuf = eventSystem.currentSelectedGameObject != null ? eventSystem.currentSelectedGameObject.gameObject: null;
+		if (locked) {
+			if (lookedAt == null)
+			{
+				eventSystem.SetSelectedGameObject(null);
+			}
+			else 
+			{
+				selectBuf(lookedAt);
+			}
+			locked = false;
+		} 
+		else {
+			selectBuf(lookedAt);
+			locked = true;
+		}
+	}
+
+	private void selectBuf(GameObject lookedAt)
+	{
+		eventSystem.SetSelectedGameObject(null);
+		if (lookedAt != null)
+		{
+			GameObject newPressed = ExecuteEvents.ExecuteHierarchy (lookedAt, lookData, ExecuteEvents.submitHandler);
+			if (newPressed != null) {
+				eventSystem.SetSelectedGameObject(newPressed);
+				(newPressed.GetComponent<InputField>()).MoveTextEnd(false);
+				locked = true;
+			}
+		}
+	
+	}
 	
 	public override void Process() {
 		// send update events if there is a selected object - this is important for InputField to receive keyboard events
 		SendUpdateEventToSelectedObject();
 		PointerEventData lookData = GetLookPointerEventData();
 		// use built-in enter/exit highlight handler
-
-		if (lookData.pointerCurrentRaycast.gameObject != null && eventSystem.currentSelectedGameObject != lookData.pointerCurrentRaycast.gameObject) {
-			GameObject go = lookData.pointerCurrentRaycast.gameObject;
-			GameObject newPressed = ExecuteEvents.ExecuteHierarchy (go, lookData, ExecuteEvents.selectHandler);
-			if (newPressed != null) {
-				eventSystem.SetSelectedGameObject(newPressed);
-				(newPressed.GetComponent<InputField>()).MoveTextEnd(false);
+		HandlePointerExitAndEnter(lookData,lookData.pointerCurrentRaycast.gameObject);
+		bool commandKeysPressed = Input.GetKey (KeyCode.L) && (Input.GetKey (KeyCode.LeftControl) || Input.GetKey (KeyCode.RightControl));
+		if (Input.GetKeyDown(KeyCode.B)) {
+			eventSystem.SetSelectedGameObject(null);
+			if (lookData.pointerCurrentRaycast.gameObject != null) {
+				GameObject go = lookData.pointerCurrentRaycast.gameObject;
+				GameObject newPressed = ExecuteEvents.ExecuteHierarchy (go, lookData, ExecuteEvents.submitHandler);
+				if (newPressed != null) {
+					eventSystem.SetSelectedGameObject(newPressed);
+					(newPressed.GetComponent<InputField>()).MoveTextEnd(false);
+				}
 			}
 		}
 		if (eventSystem.currentSelectedGameObject && controlAxisName != null && controlAxisName != "") {
@@ -58,4 +99,3 @@ public class Pointer : BaseInputModule {
 		}
 	}   
 }
-
