@@ -1,57 +1,39 @@
 using System;
 using System.IO;
+using UnityEngine.UI;
+using UnityEngine;
 
 namespace vrim
 {
 
-	/* 
-	 * Class Buffer manages the "backend" of vrim, exposing an API for basic text manipulation
-	 * (moving the point, entering chars, deleting chars, etc)
-	 * there is a bijection between open files and Buffer objects
-	 */
-	public class Buffer
+	public class Buffer : MonoBehaviour
 	{
-		private PieceChain chain;
 		private string filename;
-		private int lineLen =  40;
 		private int cursor = 0;
+		private GameObject parentCanvas;
 
-		private enum Movement {Down, Up, Left, Right};
 
-		public Buffer()
-		{
-			chain = new PieceChain ();
-			filename = null;
-		}
-
-		public Buffer(string filename)
+		public void Init(GameObject parentCanvas, string filename)
 		{
 			this.filename = filename;
-			char[] f;
-			try {
-				f = System.Text.Encoding.UTF8.GetString(File.ReadAllBytes(filename)).ToCharArray();
-			} catch(FileNotFoundException) {
-				chain = new PieceChain ();
-				return;
-			}
-			chain = new PieceChain (f);
+			this.parentCanvas = parentCanvas;
+			InputField ipf = (InputField) (parentCanvas.GetComponentsInChildren(typeof(InputField)))[0];
+			ipf.onValueChange.AddListener (ValueChange);
+		}
+		
+		public void ValueChange(string input)
+		{
+			Debug.Log (input);
 		}
 
 		public void Insert(string toInsert)
 		{
-			if (chain.Insert (cursor, toInsert))
-				cursor += toInsert.Length;
 		}
 
 		public void Delete(int length)
 		{
-			chain.Delete (cursor, length);
 		}
 
-		public string GetContents()
-		{
-			return chain.GetContentsTesting ();
-		}
 	}
 
 }

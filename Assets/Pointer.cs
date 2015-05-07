@@ -31,6 +31,7 @@ public class Pointer : BaseInputModule {
 	private bool SendUpdateEventToSelectedObject() {
 		if (eventSystem.currentSelectedGameObject == null)
 			return false;
+		//return true;
 		BaseEventData data = GetBaseEventData ();
 		ExecuteEvents.Execute (eventSystem.currentSelectedGameObject, data, ExecuteEvents.updateSelectedHandler);
 		return data.used;
@@ -39,7 +40,6 @@ public class Pointer : BaseInputModule {
 	public void LockOn()
 	{
 		GameObject lookedAt = lookData.pointerCurrentRaycast.gameObject;
-		GameObject currBuf = eventSystem.currentSelectedGameObject != null ? eventSystem.currentSelectedGameObject.gameObject: null;
 		if (locked) {
 			if (lookedAt == null)
 			{
@@ -78,18 +78,6 @@ public class Pointer : BaseInputModule {
 		PointerEventData lookData = GetLookPointerEventData();
 		// use built-in enter/exit highlight handler
 		HandlePointerExitAndEnter(lookData,lookData.pointerCurrentRaycast.gameObject);
-		bool commandKeysPressed = Input.GetKey (KeyCode.L) && (Input.GetKey (KeyCode.LeftControl) || Input.GetKey (KeyCode.RightControl));
-		if (Input.GetKeyDown(KeyCode.B)) {
-			eventSystem.SetSelectedGameObject(null);
-			if (lookData.pointerCurrentRaycast.gameObject != null) {
-				GameObject go = lookData.pointerCurrentRaycast.gameObject;
-				GameObject newPressed = ExecuteEvents.ExecuteHierarchy (go, lookData, ExecuteEvents.submitHandler);
-				if (newPressed != null) {
-					eventSystem.SetSelectedGameObject(newPressed);
-					(newPressed.GetComponent<InputField>()).MoveTextEnd(false);
-				}
-			}
-		}
 		if (eventSystem.currentSelectedGameObject && controlAxisName != null && controlAxisName != "") {
 			float newVal = Input.GetAxis (controlAxisName);
 			if (newVal > 0.01f || newVal < -0.01f) {
