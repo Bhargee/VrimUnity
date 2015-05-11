@@ -18,7 +18,9 @@ public class InputTestScript : MonoBehaviour {
 
 		Vector3 newPos = new Vector3(Sphere_Size * Mathf.Cos (0) * Mathf.Sin(0), Sphere_Size * Mathf.Sin (0) * Mathf.Sin (0), Sphere_Size * Mathf.Cos (0));
 		rootCanvas.transform.position = newPos;
-		InitBuffer (rootCanvas, null);
+		//EditorBuf buf = new EditorBuf (false);
+		//buf.transform.parent = rootCanvas.transform;
+		//InitBuffer (rootCanvas, null);
 
 		GameObject go = GameObject.Find("EventSystem");
 		p = (Pointer) go.GetComponent<Pointer>();
@@ -49,7 +51,7 @@ public class InputTestScript : MonoBehaviour {
 					Vector3 vv = new Vector3(Sphere_Size * cur.transform.forward.x, Sphere_Size * cur.transform.forward.y, Sphere_Size * cur.transform.forward.z);
 					cur.transform.position = vv;
 				}
-			} else if (Input.GetKey (KeyCode.E)) {
+			} else if (Input.GetKey (KeyCode.E)) { 
 				Sphere_Size = Sphere_Size + .3F;
 				if(Sphere_Size > 35F){
 					Sphere_Size = 35F;
@@ -65,11 +67,12 @@ public class InputTestScript : MonoBehaviour {
 			} else if (Input.GetKeyDown(KeyCode.H)) {
 				GameObject newBuf = (GameObject) Instantiate(rootCanvas, new Vector3(Sphere_Size * centerEyeAnchor.transform.forward.x, 
 				                                                                     Sphere_Size * centerEyeAnchor.transform.forward.y, 
-				                                                                     Sphere_Size * centerEyeAnchor.transform.forward.z), 
+				                                                                             Sphere_Size * centerEyeAnchor.transform.forward.z), 
 				                                             						 centerEyeAnchor.transform.rotation);
 				SetBufText(newBuf, "");
-				InitBuffer(newBuf, null);  
+				//InitBuffer(newBuf, null);  
 			}
+			return;
 		}
 
 	}
@@ -77,6 +80,7 @@ public class InputTestScript : MonoBehaviour {
 	private static void InitBuffer(GameObject canvas, string filename) 
 	{
 		canvas.AddComponent<Buffer> ();
+		//GameObject ipf = new InputField ();
 		Buffer b = (Buffer)canvas.GetComponent<Buffer> ();
 		b.Init (canvas, filename);
 	}

@@ -2,6 +2,7 @@
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using System.Collections;
+using vrim;
 
 public class Pointer : BaseInputModule {
 	
@@ -28,11 +29,13 @@ public class Pointer : BaseInputModule {
 		return lookData;
 	}
 	
-	private bool SendUpdateEventToSelectedObject() {
+	private bool SendUpdateEventToSelectedObject() {Cloth:
 		if (eventSystem.currentSelectedGameObject == null)
 			return false;
-		//return true;
 		BaseEventData data = GetBaseEventData ();
+		Buffer buf = (Buffer)eventSystem.currentSelectedGameObject.GetComponent<Buffer> ();
+		//if (buf != null)
+		//	buf.UpdateState (data);
 		ExecuteEvents.Execute (eventSystem.currentSelectedGameObject, data, ExecuteEvents.updateSelectedHandler);
 		return data.used;
 	}
@@ -65,7 +68,11 @@ public class Pointer : BaseInputModule {
 			GameObject newPressed = ExecuteEvents.ExecuteHierarchy (lookedAt, lookData, ExecuteEvents.submitHandler);
 			if (newPressed != null) {
 				eventSystem.SetSelectedGameObject(newPressed);
-				(newPressed.GetComponent<InputField>()).MoveTextEnd(false);
+				Event fake = Event.KeyboardEvent(KeyCode.RightArrow);
+				EventSystem ev = EventSystem.current;
+
+				// TODO change this to buf cursor position
+				//(newPressed.GetComponent<InputField>()).MoveTextStart(false);
 				locked = true;
 			}
 		}
