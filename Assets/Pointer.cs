@@ -78,12 +78,12 @@ public class Pointer : BaseInputModule {
 		PointerEventData lookData = GetLookPointerEventData();
 		// use built-in enter/exit highlight handler
 		HandlePointerExitAndEnter(lookData,lookData.pointerCurrentRaycast.gameObject);
-		if (eventSystem.currentSelectedGameObject && controlAxisName != null && controlAxisName != "") {
+		/*if (eventSystem.currentSelectedGameObject && controlAxisName != null && controlAxisName != "") {
 			float newVal = Input.GetAxis (controlAxisName);
 			if (newVal > 0.01f || newVal < -0.01f) {
 				AxisEventData axisData = GetAxisEventData(newVal,0.0f,0.0f);
 				ExecuteEvents.Execute(eventSystem.currentSelectedGameObject, axisData, ExecuteEvents.moveHandler);
 			}
-		}
+		}*/
 	}   
 }

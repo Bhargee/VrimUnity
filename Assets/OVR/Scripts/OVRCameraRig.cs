@@ -56,6 +56,8 @@ public class OVRCameraRig : MonoBehaviour
 
 	private bool needsCameraConfigure;
 
+	private Quaternion r = Quaternion.Euler(0, 0, 0);
+
 #region Unity Messages
 	private void Awake()
 	{
@@ -84,6 +86,19 @@ public class OVRCameraRig : MonoBehaviour
 	private void Update()
 #endif
 	{
+		bool command = false;
+		if (Input.GetKey (KeyCode.LeftControl) || Input.GetKey (KeyCode.RightControl)) {
+			command = true;
+		}
+		if (command) {
+			// zoom out
+			if (Input.GetKey (KeyCode.RightArrow)) {
+				r = r * Quaternion.Euler(0, 2, 0);
+			}
+			if (Input.GetKey (KeyCode.LeftArrow)) {
+				r = r * Quaternion.Euler(0, -2, 0);
+			}
+		}
 		EnsureGameObjectIntegrity();
 		
 		if (!Application.isPlaying)
@@ -100,9 +115,9 @@ public class OVRCameraRig : MonoBehaviour
 		OVRPose leftEye = OVRManager.display.GetEyePose(OVREye.Left);
 		OVRPose rightEye = OVRManager.display.GetEyePose(OVREye.Right);
 
-		leftEyeAnchor.localRotation = leftEye.orientation;
-		centerEyeAnchor.localRotation = leftEye.orientation; // using left eye for now
-		rightEyeAnchor.localRotation = rightEye.orientation;
+		leftEyeAnchor.localRotation = leftEye.orientation*r;
+		centerEyeAnchor.localRotation = leftEye.orientation*r; // using left eye for now
+		rightEyeAnchor.localRotation = rightEye.orientation*r;
 
 		leftEyeAnchor.localPosition = leftEye.position;
 		centerEyeAnchor.localPosition = 0.5f * (leftEye.position + rightEye.position);
