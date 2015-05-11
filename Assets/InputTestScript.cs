@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using UnityEngine.EventSystems;
 using System.IO;
 using vrim;
 
@@ -18,9 +19,6 @@ public class InputTestScript : MonoBehaviour {
 
 		Vector3 newPos = new Vector3(Sphere_Size * Mathf.Cos (0) * Mathf.Sin(0), Sphere_Size * Mathf.Sin (0) * Mathf.Sin (0), Sphere_Size * Mathf.Cos (0));
 		rootCanvas.transform.position = newPos;
-		//EditorBuf buf = new EditorBuf (false);
-		//buf.transform.parent = rootCanvas.transform;
-		//InitBuffer (rootCanvas, null);
 
 		GameObject go = GameObject.Find("EventSystem");
 		p = (Pointer) go.GetComponent<Pointer>();
@@ -30,6 +28,7 @@ public class InputTestScript : MonoBehaviour {
 		fileChooser.Select ();
 		fileChooser.ActivateInputField ();
 		fileChooser.onValueChange.AddListener (FileDialogUpdate);
+		fileChooser.transform.parent = rootCanvas.transform;
 	}
 	
 	// Update is called once per frame
@@ -69,8 +68,15 @@ public class InputTestScript : MonoBehaviour {
 				                                                                     Sphere_Size * centerEyeAnchor.transform.forward.y, 
 				                                                                             Sphere_Size * centerEyeAnchor.transform.forward.z), 
 				                                             						 centerEyeAnchor.transform.rotation);
+				GameObject fb = newBuf.transform.Find("FileDialog").gameObject;
+				fb.active = true;
+				InputField newFileChooser = fb.GetComponent<InputField>();
+				newFileChooser.Select();
+				newFileChooser.ActivateInputField();
+				newFileChooser.onValueChange.AddListener(FileDialogUpdate);
 				SetBufText(newBuf, "");
-				//InitBuffer(newBuf, null);  
+			} else if (Input.GetKeyDown(KeyCode.K)) {
+
 			}
 			return;
 		}
@@ -90,11 +96,12 @@ public class InputTestScript : MonoBehaviour {
 		if (!File.Exists (input))
 			return;
 		string text = File.ReadAllText (input);
-		SetBufText (rootCanvas, text);
-		GameObject fd = GameObject.Find ("FileDialog");
-		if (fd == null)
-			return;
-		fd.SetActive (false);
+		EventSystem curr = EventSystem.current;
+		GameObject currFileDialog = curr.currentSelectedGameObject;
+		GameObject currCanvas = currFileDialog.transform.parent.gameObject;
+		SetBufText (currCanvas, text);
+		SetBufText (currFileDialog, "");
+		currFileDialog.SetActive (false);
 	}
 
 	private void SetBufText(GameObject buf, string text)
