@@ -68,7 +68,7 @@ public class Pointer : BaseInputModule {
 			GameObject newPressed = ExecuteEvents.ExecuteHierarchy (lookedAt, lookData, ExecuteEvents.submitHandler);
 			if (newPressed != null) {
 				eventSystem.SetSelectedGameObject(newPressed);
-				Event fake = Event.KeyboardEvent(KeyCode.RightArrow);
+//				Event fake = Event.KeyboardEvent(KeyCode.RightArrow);
 				EventSystem ev = EventSystem.current;
 
 				// TODO change this to buf cursor position
