@@ -1,0 +1,127 @@
+Initialize engine version: 4.6.5p1 (61a1c72d2e64)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.0]
+    Renderer: NVIDIA GeForce GTX TITAN Black (ID=0x100c)
+    Vendor:   NVIDIA
+    VRAM:     3072 MB
+Begin MonoManager ReloadAssembly
+Platform assembly: C:\Users\fishben2\Documents\GitHub\VrimUnity\test_vrim_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading C:\Users\fishben2\Documents\GitHub\VrimUnity\test_vrim_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: C:\Users\fishben2\Documents\GitHub\VrimUnity\test_vrim_Data\Managed\Assembly-CSharp-firstpass.dll (this message is harmless)
+Loading C:\Users\fishben2\Documents\GitHub\VrimUnity\test_vrim_Data\Managed\Assembly-CSharp-firstpass.dll into Unity Child Domain
+Platform assembly: C:\Users\fishben2\Documents\GitHub\VrimUnity\test_vrim_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading C:\Users\fishben2\Documents\GitHub\VrimUnity\test_vrim_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: C:\Users\fishben2\Documents\GitHub\VrimUnity\test_vrim_Data\Managed\Assembly-UnityScript-firstpass.dll (this message is harmless)
+Loading C:\Users\fishben2\Documents\GitHub\VrimUnity\test_vrim_Data\Managed\Assembly-UnityScript-firstpass.dll into Unity Child Domain
+Platform assembly: C:\Users\fishben2\Documents\GitHub\VrimUnity\test_vrim_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading C:\Users\fishben2\Documents\GitHub\VrimUnity\test_vrim_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+- Completed reload, in  0.033 seconds
+<RI> Initializing input.
+<RI> Input initialized.
+desktop: 2560x1440 59Hz; virtual: 5120x1440 at 0,0
+Platform assembly: C:\Users\fishben2\Documents\GitHub\VrimUnity\test_vrim_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: C:\Users\fishben2\Documents\GitHub\VrimUnity\test_vrim_Data\Managed\System.dll (this message is harmless)
+UnloadTime: 0.595334 ms
+WARNING: Shader Unsupported: 'Hidden/TerrainEngine/Details/BillboardWavingDoublePass' - Pass '' shader state not supported
+NullReferenceException: Object reference not set to an instance of an object
+  at InputTestScript.Start () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentOutOfRangeException: startIndex + length > this.length
+Parameter name: length
+  at System.String.Substring (Int32 startIndex, Int32 length) [0x00000] in <filename unknown>:0 
+  at InputTestScript.FileDialogUpdate (System.String input) [0x00000] in <filename unknown>:0 
+  at UnityEngine.Events.InvokableCall`1[System.String].Invoke (System.Object[] args) [0x00000] in <filename unknown>:0 
+  at UnityEngine.Events.InvokableCallList.Invoke (System.Object[] parameters) [0x00000] in <filename unknown>:0 
+  at UnityEngine.Events.UnityEventBase.Invoke (System.Object[] parameters) [0x00000] in <filename unknown>:0 
+  at UnityEngine.Events.UnityEvent`1[T0].Invoke (.T0 arg0) [0x00000] in <filename unknown>:0 
+  at UnityEngine.UI.InputField.SendOnValueChanged () [0x00000] in <filename unknown>:0 
+  at UnityEngine.UI.InputField.Insert (Char c) [0x00000] in <filename unknown>:0 
+  at UnityEngine.UI.InputField.Append (Char input) [0x00000] in <filename unknown>:0 
+  at UnityEngine.UI.InputField.KeyPressed (UnityEngine.Event evt) [0x00000] in <filename unknown>:0 
+  at UnityEngine.UI.InputField.OnUpdateSelected (UnityEngine.EventSystems.BaseEventData eventData) [0x00000] in <filename unknown>:0 
+  at UnityEngine.EventSystems.ExecuteEvents.Execute (IUpdateSelectedHandler handler, UnityEngine.EventSystems.BaseEventData eventData) [0x00000] in <filename unknown>:0 
+  at UnityEngine.EventSystems.ExecuteEvents.Execute[IUpdateSelectedHandler] (UnityEngine.GameObject target, UnityEngine.EventSystems.BaseEventData eventData, UnityEngine.EventSystems.EventFunction`1 functor) [0x00000] in <filename unknown>:0 
+UnityEngine.Debug:Internal_LogException(Exception, Object)
+UnityEngine.Debug:LogException(Exception)
+UnityEngine.EventSystems.ExecuteEvents:Execute(GameObject, BaseEventData, EventFunction`1)
+Pointer:SendUpdateEventToSelectedObject()
+Pointer:Process()
+UnityEngine.EventSystems.EventSystem:Update()
+ 
+(Filename:  Line: -1)
+
+ArgumentOutOfRangeException: startIndex + length > this.length
+Parameter name: length
+  at System.String.Substring (Int32 startIndex, Int32 length) [0x00000] in <filename unknown>:0 
+  at InputTestScript.FileDialogUpdate (System.String input) [0x00000] in <filename unknown>:0 
+  at UnityEngine.Events.InvokableCall`1[System.String].Invoke (System.Object[] args) [0x00000] in <filename unknown>:0 
+  at UnityEngine.Events.InvokableCallList.Invoke (System.Object[] parameters) [0x00000] in <filename unknown>:0 
+  at UnityEngine.Events.UnityEventBase.Invoke (System.Object[] parameters) [0x00000] in <filename unknown>:0 
+  at UnityEngine.Events.UnityEvent`1[T0].Invoke (.T0 arg0) [0x00000] in <filename unknown>:0 
+  at UnityEngine.UI.InputField.SendOnValueChanged () [0x00000] in <filename unknown>:0 
+  at UnityEngine.UI.InputField.SendOnValueChangedAndUpdateLabel () [0x00000] in <filename unknown>:0 
+  at UnityEngine.UI.InputField.Backspace () [0x00000] in <filename unknown>:0 
+  at UnityEngine.UI.InputField.KeyPressed (UnityEngine.Event evt) [0x00000] in <filename unknown>:0 
+  at UnityEngine.UI.InputField.OnUpdateSelected (UnityEngine.EventSystems.BaseEventData eventData) [0x00000] in <filename unknown>:0 
+  at UnityEngine.EventSystems.ExecuteEvents.Execute (IUpdateSelectedHandler handler, UnityEngine.EventSystems.BaseEventData eventData) [0x00000] in <filename unknown>:0 
+  at UnityEngine.EventSystems.ExecuteEvents.Execute[IUpdateSelectedHandler] (UnityEngine.GameObject target, UnityEngine.EventSystems.BaseEventData eventData, UnityEngine.EventSystems.EventFunction`1 functor) [0x00000] in <filename unknown>:0 
+UnityEngine.Debug:Internal_LogException(Exception, Object)
+UnityEngine.Debug:LogException(Exception)
+UnityEngine.EventSystems.ExecuteEvents:Execute(GameObject, BaseEventData, EventFunction`1)
+Pointer:SendUpdateEventToSelectedObject()
+Pointer:Process()
+UnityEngine.EventSystems.EventSystem:Update()
+ 
+(Filename:  Line: -1)
+
+ArgumentOutOfRangeException: startIndex + length > this.length
+Parameter name: length
+  at System.String.Substring (Int32 startIndex, Int32 length) [0x00000] in <filename unknown>:0 
+  at InputTestScript.FileDialogUpdate (System.String input) [0x00000] in <filename unknown>:0 
+  at UnityEngine.Events.InvokableCall`1[System.String].Invoke (System.Object[] args) [0x00000] in <filename unknown>:0 
+  at UnityEngine.Events.InvokableCallList.Invoke (System.Object[] parameters) [0x00000] in <filename unknown>:0 
+  at UnityEngine.Events.UnityEventBase.Invoke (System.Object[] parameters) [0x00000] in <filename unknown>:0 
+  at UnityEngine.Events.UnityEvent`1[T0].Invoke (.T0 arg0) [0x00000] in <filename unknown>:0 
+  at UnityEngine.UI.InputField.SendOnValueChanged () [0x00000] in <filename unknown>:0 
+  at UnityEngine.UI.InputField.SendOnValueChangedAndUpdateLabel () [0x00000] in <filename unknown>:0 
+  at UnityEngine.UI.InputField.Backspace () [0x00000] in <filename unknown>:0 
+  at UnityEngine.UI.InputField.KeyPressed (UnityEngine.Event evt) [0x00000] in <filename unknown>:0 
+  at UnityEngine.UI.InputField.OnUpdateSelected (UnityEngine.EventSystems.BaseEventData eventData) [0x00000] in <filename unknown>:0 
+  at UnityEngine.EventSystems.ExecuteEvents.Execute (IUpdateSelectedHandler handler, UnityEngine.EventSystems.BaseEventData eventData) [0x00000] in <filename unknown>:0 
+  at UnityEngine.EventSystems.ExecuteEvents.Execute[IUpdateSelectedHandler] (UnityEngine.GameObject target, UnityEngine.EventSystems.BaseEventData eventData, UnityEngine.EventSystems.EventFunction`1 functor) [0x00000] in <filename unknown>:0 
+UnityEngine.Debug:Internal_LogException(Exception, Object)
+UnityEngine.Debug:LogException(Exception)
+UnityEngine.EventSystems.ExecuteEvents:Execute(GameObject, BaseEventData, EventFunction`1)
+Pointer:SendUpdateEventToSelectedObject()
+Pointer:Process()
+UnityEngine.EventSystems.EventSystem:Update()
+ 
+(Filename:  Line: -1)
+
+ArgumentOutOfRangeException: startIndex + length > this.length
+Parameter name: length
+  at System.String.Substring (Int32 startIndex, Int32 length) [0x00000] in <filename unknown>:0 
+  at InputTestScript.FileDialogUpdate (System.String input) [0x00000] in <filename unknown>:0 
+  at UnityEngine.Events.InvokableCall`1[System.String].Invoke (System.Object[] args) [0x00000] in <filename unknown>:0 
+  at UnityEngine.Events.InvokableCallList.Invoke (System.Object[] parameters) [0x00000] in <filename unknown>:0 
+  at UnityEngine.Events.UnityEventBase.Invoke (System.Object[] parameters) [0x00000] in <filename unknown>:0 
+  at UnityEngine.Events.UnityEvent`1[T0].Invoke (.T0 arg0) [0x00000] in <filename unknown>:0 
+  at UnityEngine.UI.InputField.SendOnValueChanged () [0x00000] in <filename unknown>:0 
+  at UnityEngine.UI.InputField.SendOnValueChangedAndUpdateLabel () [0x00000] in <filename unknown>:0 
+  at UnityEngine.UI.InputField.Backspace () [0x00000] in <filename unknown>:0 
+  at UnityEngine.UI.InputField.KeyPressed (UnityEngine.Event evt) [0x00000] in <filename unknown>:0 
+  at UnityEngine.UI.InputField.OnUpdateSelected (UnityEngine.EventSystems.BaseEventData eventData) [0x00000] in <filename unknown>:0 
+  at UnityEngine.EventSystems.ExecuteEvents.Execute (IUpdateSelectedHandler handler, UnityEngine.EventSystems.BaseEventData eventData) [0x00000] in <filename unknown>:0 
+  at UnityEngine.EventSystems.ExecuteEvents.Execute[IUpdateSelectedHandler] (UnityEngine.GameObject target, UnityEngine.EventSystems.BaseEventData eventData, UnityEngine.EventSystems.EventFunction`1 functor) [0x00000] in <filename unknown>:0 
+UnityEngine.Debug:Internal_LogException(Exception, Object)
+UnityEngine.Debug:LogException(Exception)
+UnityEngine.EventSystems.ExecuteEvents:Execute(GameObject, BaseEventData, EventFunction`1)
+Pointer:SendUpdateEventToSelectedObject()
+Pointer:Process()
+UnityEngine.EventSystems.EventSystem:Update()
+ 
+(Filename:  Line: -1)
+

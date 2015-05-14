@@ -58,6 +58,24 @@ public class Pointer : BaseInputModule {
 			selectBuf(lookedAt);
 			locked = true;
 		}
+	}	
+	public void Open()
+	{
+		GameObject lookedAt = lookData.pointerCurrentRaycast.gameObject;
+		if (lookedAt != null)
+		{
+			GameObject newPressed = ExecuteEvents.ExecuteHierarchy (lookedAt, lookData, ExecuteEvents.selectHandler);
+			if (newPressed != null) {
+				GameObject newPressed2 = (GameObject) newPressed.transform.parent.gameObject.transform.FindChild("FileDialog").gameObject;
+				if(newPressed2.active){
+					newPressed2.SetActive (false);
+				}else{
+					newPressed2.SetActive (true);
+					newPressed2.GetComponent<InputField>().Select();
+ 
+				}
+			}
+		}
 	}
 
 	private void selectBuf(GameObject lookedAt)
@@ -72,7 +90,7 @@ public class Pointer : BaseInputModule {
 				EventSystem ev = EventSystem.current;
 
 				// TODO change this to buf cursor position
-				//(newPressed.GetComponent<InputField>()).MoveTextStart(false);
+				(newPressed.GetComponent<InputField>()).MoveTextStart(false);
 				locked = true;
 			}
 		}
